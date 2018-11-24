@@ -10,14 +10,16 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        loader: 'eslint-loader',
+        include: path.resolve(__dirname, '../src'),
+        exclude: path.resolve(__dirname, '../node_modules')
+      }, {
         test: /\.jsx?$/,
         loader: 'babel-loader?cacheDirectory',
-        include: [
-          path.resolve(__dirname, '../src')
-        ],
-        exclude: [
-          path.resolve(__dirname, '../node_modules')
-        ]
+        include: path.resolve(__dirname, '../src'),
+        exclude: path.resolve(__dirname, '../node_modules')
       }
     ]
   }
