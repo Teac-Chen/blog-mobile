@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:server": "node src/server/app.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --color --config build/webpack-config-client.js",
+    "build:client": "cross-env NODE_ENV=production webpack --config build/webpack-config-client.js",
+    "build:server": "cross-env NODE_ENV=production webpack --config build/webpack-config-server.js",
+    "build": "rimraf dist && npm run build:client && npm run build:server"
   },
   "repository": {
     "type": "git",
@@ -17,21 +21,28 @@
   },
   "homepage": "https://github.com/Teac-Chen/blog-mobile#readme",
   "dependencies": {
+    "koa": "^2.6.2",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^8.0.4",
+    "cross-env": "^5.2.0",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.0",
+    "html-webpack-plugin": "^3.2.0",
+    "rimraf": "^2.6.2",
     "webpack": "^4.26.0",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
   }
 }
