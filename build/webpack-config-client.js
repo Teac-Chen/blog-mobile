@@ -10,8 +10,9 @@ const config = {
     main: path.resolve(__dirname, '../src/mobile/app.js')
   },
   output: {
-    filename: `${baseConfig.staticPath}/[name]-[hash:5].js`,
-    path: baseConfig.outPath
+    filename: `${baseConfig.jsPath}/[name]-[hash:5].js`,
+    path: baseConfig.outPath,
+    publicPath: baseConfig.publicPath
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json']
@@ -36,7 +37,7 @@ const config = {
     new HtmlPlugin({
       title: 'hehe',
       template: path.resolve(__dirname, '../static/index.html'),
-      favicon: path.resolve(__dirname, '../static/favicon.ico'),
+      // favicon: path.resolve(__dirname, '../favicon.ico'),
       cache: true
     })
   ]
@@ -47,12 +48,12 @@ if (isDev) {
     host: devConfig.host,
     port: devConfig.port,
     contentBase: baseConfig.outPath,
-    publicPath: devConfig.publicPath,
+    publicPath: baseConfig.publicPath,
     // compress: true,
     hot: true,
     open: devConfig.autoOpenBrower,
     historyApiFallback: {
-      index: '/index.html'
+      index: `${baseConfig.publicPath}/index.html`
     },
     overlay: devConfig.showErrorInScreen
       ? { warnings: true, errors: true }

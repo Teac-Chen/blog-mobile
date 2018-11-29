@@ -1,10 +1,13 @@
 const Koa = require('koa')
 const path = require('path')
-const fs = require('fs')
+const favicon = require('koa-favicon')
 
-const ReactDomServer = require('react-dom/server')
+const logTime = require('./middlewares/log-time')
+const koaStaticPath = require('./middlewares/koa-static-path')
+
 const config = require('../../config').baseConfig.node
-const serverBundle = require('../../dist/js/server-entry').default
+const isDev = process.env.NODE_ENV === 'development'
+const serverRender = isDev ? require('./utils/server-render-dev') : require('./utils/server-render-pro')
 
 const app = new Koa()
 
@@ -15,38 +18,17 @@ app.on('error', err => {
   console.log('server error', err)
 })
 
-app.use(async (ctx, next) => {
-  const start = Date.now()
-  let ms
+app
+  .use(logTime)
+  .use(favicon(path.resolve(__dirname, '../../favicon.ico')))
 
-  await next()
-
-  ms = Date.now() - start
-
-  ctx.set('X-Response-time', `${ms}ms`)
-
-  console.log(`${ctx.method} ${ctx.url} - ${ctx.status} - ${ms}ms`)
-})
-
-app.use(async (ctx, next) => {
-  let template = await fs.readFileSync(path.resolve(__dirname, '../../dist/index.html'), 'utf8')
-
-  const context = {}
-
-  const app = serverBundle(ctx.url, context)
-
-  const content = ReactDomServer.renderToString(app)
-
-  console.log('context ====>', context)
-  if (context.url) {
-    ctx.status = 301
-    ctx.redirect(context.url)
-
-    return
-  }
-
-  ctx.body = template.replace('<!-- App -->', content)
-})
+if (isDev) {
+  serverRender(app)
+} else {
+  app
+    .use(koaStaticPath(path.resolve(__dirname, '../../dist'), '/public'))
+    .use(serverRender.middleware())
+}
 
 app.listen(port)
 

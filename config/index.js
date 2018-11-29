@@ -5,8 +5,9 @@ const buildConfig = require('./build')
 
 module.exports = {
   baseConfig: {
-    staticPath: 'js',
+    jsPath: 'js',
     outPath: path.resolve(__dirname, '../dist'),
+    publicPath: '/public',
     node: {
       port: 2018,
       host: '0.0.0.0'

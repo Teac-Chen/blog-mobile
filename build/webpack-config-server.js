@@ -6,7 +6,7 @@ module.exports = {
   target: 'node',
   entry: path.resolve(__dirname, '../src/mobile/server-entry.js'),
   output: {
-    filename: `${baseConfig.staticPath}/server-entry.js`,
+    filename: `${baseConfig.jsPath}/server-entry.js`,
     path: baseConfig.outPath,
     libraryTarget: 'commonjs2'
   },
