@@ -5,7 +5,7 @@ const favicon = require('koa-favicon')
 const logTime = require('./middlewares/log-time')
 const koaStaticPath = require('./middlewares/koa-static-path')
 
-const config = require('../../config').baseConfig.node
+const config = require('../config').baseConfig.node
 const isDev = process.env.NODE_ENV === 'development'
 const serverRender = isDev ? require('./utils/server-render-dev') : require('./utils/server-render-pro')
 
@@ -20,13 +20,13 @@ app.on('error', err => {
 
 app
   .use(logTime)
-  .use(favicon(path.resolve(__dirname, '../../favicon.ico')))
+  .use(favicon(path.resolve(__dirname, '../favicon.ico')))
 
 if (isDev) {
   serverRender(app)
 } else {
   app
-    .use(koaStaticPath(path.resolve(__dirname, '../../dist'), '/public'))
+    .use(koaStaticPath(path.resolve(__dirname, '../dist'), '/public'))
     .use(serverRender.middleware())
 }
 

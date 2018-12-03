@@ -8,7 +8,8 @@ const ReactDomServer = require('react-dom/server')
 const NativeModule = require('module')
 const vm = require('vm')
 
-const webpackServerConfig = require('../../../build/webpack-config-server')
+const webpackServerConfig = require('../../build/webpack-config-server')
+const { baseConfig, devConfig } = require('../../config')
 
 function getModuleFromMemory (bundle, filename) {
   const m = { exports: {} }
@@ -50,21 +51,19 @@ serverCompiler.watch({}, (err, stats) => {
 module.exports = (app) => {
   const router = Router().loadMethods()
 
-  app.use(proxy('/public', {
-    target: 'http://localhost:1992',
+  app.use(proxy(baseConfig.publicPath, {
+    target: `http://localhost:${devConfig.port}`,
     logs: true
   }))
 
-  router.get('*', async (ctx, next) => {
+  router.get('*', async ctx => {
     if (!serverBundle) {
       ctx.body = '页面正在维护中，请稍后！'
-      return next()
+      return
     }
 
     if (!ctx.body) {
-      const template = await axios.get('http://localhost:1992/public/index.html')
-
-      console.log(template.data)
+      const template = await axios.get(`http://localhost:${devConfig.port}${baseConfig.publicPath}/index.html`)
 
       const context = {}
       const app = serverBundle(ctx.url, context)

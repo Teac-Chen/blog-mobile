@@ -4,7 +4,7 @@ const { baseConfig } = require('../config')
 module.exports = {
   mode: process.env.NODE_ENV,
   target: 'node',
-  entry: path.resolve(__dirname, '../src/mobile/server-entry.js'),
+  entry: path.resolve(__dirname, '../client/mobile/server-entry.js'),
   output: {
     filename: `${baseConfig.jsPath}/server-entry.js`,
     path: baseConfig.outPath,
@@ -19,12 +19,12 @@ module.exports = {
         enforce: 'pre',
         test: /\.jsx?$/,
         loader: 'eslint-loader',
-        include: path.resolve(__dirname, '../src/mobile'),
+        include: path.resolve(__dirname, '../client/mobile'),
         exclude: path.resolve(__dirname, '../node_modules')
       }, {
         test: /\.jsx?$/,
         loader: 'babel-loader?cacheDirectory',
-        include: path.resolve(__dirname, '../src/mobile'),
+        include: path.resolve(__dirname, '../client/mobile'),
         exclude: path.resolve(__dirname, '../node_modules')
       }
     ]

@@ -3,12 +3,12 @@ const path = require('path')
 const fs = require('fs')
 
 const ReactDomServer = require('react-dom/server')
-const serverBundle = require('../../../dist/js/server-entry').default
+const serverBundle = require('../../dist/js/server-entry').default
 
 const router = Router().loadMethods()
 
 router.get('*', async (ctx, next) => {
-  let template = await fs.readFileSync(path.resolve(__dirname, '../../../dist/index.html'), 'utf8')
+  let template = await fs.readFileSync(path.resolve(__dirname, '../../dist/index.html'), 'utf8')
 
   const context = {}
 
