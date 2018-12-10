@@ -4,6 +4,7 @@ const favicon = require('koa-favicon')
 
 const logTime = require('./middlewares/log-time')
 const koaStaticPath = require('./middlewares/koa-static-path')
+const routers = require('./routers')
 
 const config = require('../config').baseConfig.node
 const isDev = process.env.NODE_ENV === 'development'
@@ -29,6 +30,8 @@ if (isDev) {
     .use(koaStaticPath(path.resolve(__dirname, '../dist'), '/public'))
     .use(serverRender.middleware())
 }
+
+app.use(routers.middleware())
 
 app.listen(port)
 

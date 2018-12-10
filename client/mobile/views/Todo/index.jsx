@@ -4,8 +4,8 @@ import AddTodo from './AddTodo'
 import TodoList from './TodoList'
 
 export default () => (
-  [
-    <AddTodo />,
-    <TodoList />,
-  ]
+  <React.Fragment>
+    <AddTodo />
+    <TodoList />
+  </React.Fragment>
 )

@@ -1,23 +1,26 @@
 import React from 'react'
-import { Route, Link, Redirect } from 'react-router-dom'
+import {
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom'
 
-import Home from './Home'
-import Content from './Content'
-import Sider from './Sider'
+import { contantRouterMap } from '@m/routers'
 
 export default () => (
-  <div>
-    <nav>
-      <Link to="/home">Home</Link>
-      <br />
-      <Link to="/content">Content</Link>
-      <br />
-      <Link to="/sider">Sider</Link>
-    </nav>
+  <Switch>
+    {contantRouterMap.map(route => (route.redirect
+      ? <Redirect key={route.from} from={route.from} to={route.to} />
+      : (
+        <Route
+          key={route.path}
+          exact={route.exact}
+          path={route.path}
+          component={route.component}
+        />
+      )
+    ))}
 
-    <Route exact path="/" render={() => <Redirect to="/home" />} />
-    <Route path="/home" component={Home} />
-    <Route path="/content" component={Content} />
-    <Route path="/sider" component={Sider} />
-  </div>
+    <Route render={() => <Redirect to="/404" />} />
+  </Switch>
 )

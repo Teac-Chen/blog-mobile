@@ -4,7 +4,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      '@m': path.resolve('client/mobile')
+    }
   },
   module: {
     rules: [
