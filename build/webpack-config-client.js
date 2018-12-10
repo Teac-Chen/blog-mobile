@@ -1,9 +1,11 @@
 const webpack = require('webpack')
 const path = require('path')
+const merge = require('webpack-merge')
 const HtmlPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const { devConfig, baseConfig } = require('../config')
+const base = require('./webpack-config-base')
 const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
@@ -15,30 +17,10 @@ const config = {
     path: baseConfig.outPath,
     publicPath: baseConfig.publicPath
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json']
-  },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        loader: 'eslint-loader',
-        include: path.resolve(__dirname, '../client/mobile'),
-        exclude: path.resolve(__dirname, '../node_modules')
-      }, {
-        test: /\.jsx?$/,
-        loader: 'babel-loader?cacheDirectory',
-        include: path.resolve(__dirname, '../client/mobile'),
-        exclude: path.resolve(__dirname, '../node_modules')
-      }
-    ]
-  },
   plugins: [
     new HtmlPlugin({
       title: 'hehe',
       template: path.resolve(__dirname, '../static/index.html'),
-      // favicon: isDev ? path.resolve(__dirname, '../favicon.ico') : '',
       cache: true
     })
   ]
@@ -50,7 +32,6 @@ if (isDev) {
     port: devConfig.port,
     contentBase: baseConfig.outPath,
     publicPath: baseConfig.publicPath,
-    // compress: true,
     hot: true,
     open: devConfig.autoOpenBrower,
     historyApiFallback: {
@@ -72,4 +53,4 @@ if (isDev) {
   config.mode = 'production'
 }
 
-module.exports = config
+module.exports = merge(base, config)

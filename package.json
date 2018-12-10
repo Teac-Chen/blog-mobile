@@ -28,9 +28,12 @@
     "koa-better-router": "^2.1.1",
     "koa-favicon": "^2.0.1",
     "koa-send": "^5.0.0",
+    "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-router-dom": "^4.3.1"
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
@@ -59,7 +62,9 @@
     "rimraf": "^2.6.2",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2",
+    "webpack-dev-middleware": "^3.4.0",
     "webpack-dev-server": "^3.1.10",
+    "webpack-hot-middleware": "^2.24.3",
     "webpack-merge": "^4.1.4"
   }
 }

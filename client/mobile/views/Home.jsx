@@ -1,3 +1,11 @@
 import React from 'react'
 
-export default () => <h2>Home Page</h2>
+import AddTodo from './AddTodo'
+import TodoList from './TodoList'
+
+export default () => (
+  [
+    <AddTodo />,
+    <TodoList />,
+  ]
+)

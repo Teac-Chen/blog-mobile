@@ -1,7 +1,9 @@
 const path = require('path')
+const merge = require('webpack-merge')
+const base = require('./webpack-config-base')
 const { baseConfig } = require('../config')
 
-module.exports = {
+module.exports = merge(base, {
   mode: process.env.NODE_ENV,
   target: 'node',
   entry: path.resolve(__dirname, '../client/mobile/server-entry.js'),
@@ -9,24 +11,5 @@ module.exports = {
     filename: `${baseConfig.jsPath}/server-entry.js`,
     path: baseConfig.outPath,
     libraryTarget: 'commonjs2'
-  },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json']
-  },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        loader: 'eslint-loader',
-        include: path.resolve(__dirname, '../client/mobile'),
-        exclude: path.resolve(__dirname, '../node_modules')
-      }, {
-        test: /\.jsx?$/,
-        loader: 'babel-loader?cacheDirectory',
-        include: path.resolve(__dirname, '../client/mobile'),
-        exclude: path.resolve(__dirname, '../node_modules')
-      }
-    ]
   }
-}
+})
