@@ -34,6 +34,7 @@ if (isDev) {
     publicPath: baseConfig.publicPath,
     hot: true,
     open: devConfig.autoOpenBrower,
+    proxy: devConfig.proxyTable,
     historyApiFallback: {
       index: `${baseConfig.publicPath}/index.html`,
       rewrites: [

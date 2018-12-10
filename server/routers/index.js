@@ -1,8 +1,10 @@
 const Router = require('koa-better-router')
 const {
   Article
-} = require('controllers')
+} = require('../controllers')
 
-const router = Router({prefix: '/api'}).loadMethods()
+const router = Router({ prefix: '/api' }).loadMethods()
 
 router.get('article/list', Article.list)
+
+module.exports = router

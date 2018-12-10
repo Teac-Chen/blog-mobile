@@ -19,6 +19,8 @@ app.on('error', err => {
   console.log('server error', err)
 })
 
+app.use(routers.middleware())
+
 app
   .use(logTime)
   .use(favicon(path.resolve(__dirname, '../favicon.ico')))
@@ -30,8 +32,6 @@ if (isDev) {
     .use(koaStaticPath(path.resolve(__dirname, '../dist'), '/public'))
     .use(serverRender.middleware())
 }
-
-app.use(routers.middleware())
 
 app.listen(port)
 
