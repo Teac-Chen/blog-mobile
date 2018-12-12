@@ -5,6 +5,6 @@ module.exports = {
   autoOpenBrower: true,
   showErrorInScreen: true,
   proxyTable: {
-    '/api': 'http://192.168.1.141:2018'
+    '/api': 'http://192.168.1.141:2019'
   }
 }

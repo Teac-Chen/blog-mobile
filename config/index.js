@@ -9,7 +9,7 @@ module.exports = {
     outPath: path.resolve(__dirname, '../dist'),
     publicPath: '/public',
     node: {
-      port: 2018,
+      port: 2019,
       host: '0.0.0.0'
     }
   },

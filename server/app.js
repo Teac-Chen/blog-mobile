@@ -3,12 +3,12 @@ const path = require('path')
 const favicon = require('koa-favicon')
 
 const logTime = require('./middlewares/log-time')
-const koaStaticPath = require('./middlewares/koa-static-path')
+// const koaStaticPath = require('./middlewares/koa-static-path')
 const routers = require('./routers')
 
 const config = require('../config').baseConfig.node
-const isDev = process.env.NODE_ENV === 'development'
-const serverRender = isDev ? require('./utils/server-render-dev') : require('./utils/server-render-pro')
+// const isDev = process.env.NODE_ENV === 'development'
+// const serverRender = isDev ? require('./utils/server-render-dev') : require('./utils/server-render-pro')
 
 const app = new Koa()
 
@@ -25,13 +25,13 @@ app
   .use(logTime)
   .use(favicon(path.resolve(__dirname, '../favicon.ico')))
 
-if (isDev) {
-  serverRender(app)
-} else {
-  app
-    .use(koaStaticPath(path.resolve(__dirname, '../dist'), '/public'))
-    .use(serverRender.middleware())
-}
+// if (isDev) {
+//   serverRender(app)
+// } else {
+//   app
+//     .use(koaStaticPath(path.resolve(__dirname, '../dist'), '/public'))
+//     .use(serverRender.middleware())
+// }
 
 app.listen(port)
 

@@ -1,54 +1,18 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import axios from 'axios'
+import { Link } from 'react-router-dom'
 
-class ArticleList extends React.Component {
-  componentDidMount() {
-    axios.get('/api/article/list')
-      .then((result) => {
-        const { data } = result
-        const { dispatch } = this.props
-        if (data.success) {
-          dispatch({
-            type: 'INIT_ARTICLE',
-            list: data.list,
-          })
-        }
-      })
-  }
+import './index.scss'
 
-  render() {
-    const { article } = this.props
-    return (
-      <ul>
-        {article.map(item => (
-          <li key={item.title}>
-            {item.title}
-            <br />
-            作者：
-            {item.auther}
-            <br />
-            简介：
-            {item.summary}
-          </li>
-        ))}
-      </ul>
-    )
-  }
-}
-
-ArticleList.propTypes = {
-  article: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    auther: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-  dispatch: PropTypes.func.isRequired,
-}
-
-const mapStateToProps = state => ({
-  article: state.article,
-})
-
-export default connect(mapStateToProps)(ArticleList)
+export default () => (
+  <React.Fragment>
+    <header className="header">
+      <div className="headerContainer">
+        <Link to="/">TEAC小站</Link>
+        <nav>
+          <Link to="/todo">小站</Link>
+          <Link to="/about">关于</Link>
+        </nav>
+      </div>
+    </header>
+  </React.Fragment>
+)
