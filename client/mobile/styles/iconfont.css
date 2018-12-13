@@ -1,0 +1,19 @@
+
+@font-face {font-family: "iconfont";
+  src: url('../assest/fonts/iconfont.eot?t=1544689999489'); /* IE9*/
+  src: url('../assest/fonts/iconfont.ttf?t=1544689999489') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../assest/fonts/iconfont.svg?t=1544689999489#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-github:before { content: "\e6cf"; }
+
+.icon-github1:before { content: "\ee2c"; }
+
