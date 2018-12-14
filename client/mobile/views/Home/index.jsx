@@ -4,6 +4,8 @@ import Icon from '@m/components/Icon'
 
 import './index.scss'
 
+import Topics from './Topics'
+
 export default () => (
   <React.Fragment>
     <header className="header">
@@ -30,7 +32,36 @@ export default () => (
       </div>
       <div className="content">
         <div className="contentContainer">
-          <p className="plan">sss</p>
+          <Topics topics={[{
+            id: '1',
+            title: '测试的标题',
+            summary: '测试的简介',
+            image: 'https://img4.mukewang.com/szimg/59b8a486000107fb05400300.jpg',
+            read: 2000,
+            date: '2018-12-14 18:36:26',
+          }, {
+            id: '2',
+            title: '测试的标题',
+            summary: '测试的简介',
+            image: 'https://img4.mukewang.com/szimg/59b8a486000107fb05400300.jpg',
+            read: 2000,
+            date: '2018-12-14 18:36:26',
+          }, {
+            id: '3',
+            title: '测试的标题',
+            summary: '测试的简介',
+            image: 'https://img4.mukewang.com/szimg/59b8a486000107fb05400300.jpg',
+            read: 2000,
+            date: '2018-12-14 18:36:26',
+          }, {
+            id: '4',
+            title: '测试的标题',
+            summary: '测试的简介',
+            image: 'https://img4.mukewang.com/szimg/59b8a486000107fb05400300.jpg',
+            read: 2000,
+            date: '2018-12-14 18:36:26',
+          }]}
+          />
         </div>
       </div>
     </div>
