@@ -37,6 +37,7 @@ $TypeColor: #61dafb;
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 10;
 }
 
 .main {
@@ -101,6 +102,20 @@ $TypeColor: #61dafb;
   @include containerLayout;
   padding-top: 95px;
   padding-bottom: 85px;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.05;
+    background-image: url('../../assest/images/bg.svg');
+    background-repeat: no-repeat;
+    background-position: 100% 100px;
+    background-size: 50% auto;
+  }
 
   .title {
     color: $TypeColor;
@@ -131,4 +146,5 @@ $TypeColor: #61dafb;
 
 .contentContainer {
   @include containerLayout;
+  padding: 20px 0;
 }
