@@ -1,12 +1,15 @@
+/* eslint-disable */
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, Route } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import Icon from '@m/components/Icon'
 
 import './index.scss'
 
 import Topics from './Topics'
+import TopicDetail from './TopicDetail'
 
-export default () => (
+const Home = ({ match }) => (
   <React.Fragment>
     <header className="header">
       <div className="headerContainer">
@@ -65,8 +68,23 @@ export default () => (
         </div>
       </div>
     </div>
+    <Route path="/topic/:id" render={({...newObj}) => {
+      console.log(newObj)
+      return <h1>hahaha</h1>
+    }} />
+
     <footer className="footer">
       <div className="footerContainer">这是footer</div>
     </footer>
   </React.Fragment>
 )
+
+Home.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+}
+
+export default Home

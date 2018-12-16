@@ -4,10 +4,9 @@ import Login from '@m/views/Login'
 import Error404 from '@m/views/ErrorPages/Error404'
 import Error401 from '@m/views/ErrorPages/Error401'
 
-export default {}
-
-export const contantRouterMap = [
+export default [
   { path: '/', exact: true, component: Home },
+  { path: '/topic', component: Home },
   { path: '/todo', component: Todo },
   { path: '/login', component: Login },
   { path: '/404', component: Error404 },

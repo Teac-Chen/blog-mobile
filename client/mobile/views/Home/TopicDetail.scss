@@ -1,0 +1,17 @@
+.topicDetail_wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  z-index: 1992;
+  background-color: white;
+  max-width: 360px;
+  width: 30%;
+  height: 200px;
+
+  &.animation {
+
+  }
+}

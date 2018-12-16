@@ -5,7 +5,7 @@ import {
   Switch,
 } from 'react-router-dom'
 
-import { contantRouterMap } from '@m/routers'
+import contantRouterMap from '@m/routers'
 
 export default () => (
   <Switch>
@@ -21,6 +21,6 @@ export default () => (
       )
     ))}
 
-    <Route render={() => <Redirect to="/404" />} />
+    <Redirect to="/404" />
   </Switch>
 )
