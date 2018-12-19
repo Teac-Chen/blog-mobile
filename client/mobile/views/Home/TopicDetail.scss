@@ -7,11 +7,75 @@
   overflow: auto;
   z-index: 1992;
   background-color: white;
-  max-width: 360px;
-  width: 30%;
-  height: 200px;
+  display: flex;
+  align-items: stretch;
 
-  &.animation {
+  .topicDetail_catelog {
+    width: 300px;
+    margin-left: -300px;
+    background-color: red;
+    transition: margin-left .3s;
 
+    &.active {
+      margin-left: 0px;
+    }
+  }
+  .topicDetail_content {
+    flex: 1 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topicDetail_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    border-bottom: 6px double blue;
+    height: 60px;
+    box-sizing: border-box;
+
+    .topicDetail_title {
+      margin: 0;
+      align-self: center;
+    }
+
+    .catelogBtn {
+      text-align: center;
+      background-image: none;
+      border: none;
+      padding: 0 20px;
+      user-select: none;
+      background-color: #fff;
+      outline: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ddd;
+      }
+
+      &:active {
+        background-color: #eee;
+      }
+    }
+
+    .back {
+      display: flex;
+      padding: 0 20px;
+      align-items: center;
+      color: #000;
+
+      &:hover {
+        background-color: #ddd;
+      }
+
+      &:active {
+        background-color: #eee;
+      }
+    }
+  }
+
+  .topicDetail_article {
+    flex: 1 0;
+    overflow: auto;
   }
 }

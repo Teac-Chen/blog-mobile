@@ -1,0 +1,59 @@
+@import "main";
+
+.header {
+  background-color: $MainBgColor;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.headerContainer {
+  @include containerLayout;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+
+  .logo {
+    @include flexCenter;
+    color: $TypeColor;
+    font-weight: bold;
+
+    &:focus {
+      color: white;
+    }
+  }
+
+  .nav {
+    flex: 1;
+    padding: 0 40px;
+    display: flex;
+    height: 60px;
+  }
+
+  .navItem {
+    @include flexCenter;
+    color: #fff;
+    padding: 0 20px;
+    transition: color .2s;
+
+    &:hover {
+      color: $TypeColor;
+    }
+
+    &.active {
+      border-bottom: 4px solid $TypeColor;
+      color: $TypeColor;
+
+      &:focus {
+        background-color: #373940;
+        color: #fff;
+      }
+    }
+  }
+
+  .share {
+    @include flexCenter;
+    color: #fff;
+  }
+}

@@ -1,35 +1,24 @@
-/* eslint-disable */
 import React from 'react'
-import { Link, NavLink, Route } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import Icon from '@m/components/Icon'
+import { Link, Route } from 'react-router-dom'
 
 import './index.scss'
 
+import Header from '@m/views/Layout/Header'
+import Footer from '@m/views/Layout/Footer'
 import Topics from './Topics'
 import TopicDetail from './TopicDetail'
 
-const Home = ({ match }) => (
+const Home = () => (
   <React.Fragment>
-    <header className="header">
-      <div className="headerContainer">
-        <Link to="/" className="logo">TEAC小站</Link>
-        <nav className="nav">
-          <NavLink to="/todo" className="navItem">小站</NavLink>
-          <NavLink to="/about" className="navItem">关于</NavLink>
-        </nav>
-        <div className="share">
-          <Icon type="github1" />
-        </div>
-      </div>
-    </header>
+    <Header />
+
     <div className="main">
       <div className="banner">
         <div className="bannerContainer">
           <h1 className="title">Teac小站</h1>
           <p className="summary">分享技术&nbsp;&nbsp;记录成长</p>
           <div className="linkBox">
-            <Link to="/about" className="link">关于我 &gt;</Link>
+            <Link to="/todo" className="link">关于我 &gt;</Link>
           </div>
         </div>
       </div>
@@ -67,24 +56,11 @@ const Home = ({ match }) => (
           />
         </div>
       </div>
+      <Route path="/topic/:id" render={({ match: { params: { id } } }) => <TopicDetail id={id} />} />
     </div>
-    <Route path="/topic/:id" render={({...newObj}) => {
-      console.log(newObj)
-      return <h1>hahaha</h1>
-    }} />
 
-    <footer className="footer">
-      <div className="footerContainer">这是footer</div>
-    </footer>
+    <Footer />
   </React.Fragment>
 )
-
-Home.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
-  }).isRequired,
-}
 
 export default Home

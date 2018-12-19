@@ -1,0 +1,15 @@
+@import "main";
+
+.footer {
+  background-color: $MainBgColor;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footerContainer {
+  @include containerLayout;
+  @include flexCenter;
+  color: white;
+  height: 60px;
+}

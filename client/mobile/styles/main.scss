@@ -1,0 +1,28 @@
+$MainBgColor: #20232a;
+$SecondaryBgColor: #282c34;
+$TypeColor: #61dafb;
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+}
+
+@mixin containerLayout {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@mixin primaryBlock {
+  padding: 15px 25px;
+  background-color: $TypeColor;
+  font-size: 20px;
+  color: black;
+  transition: background-color .3s;
+
+  &:hover {
+    background-color: #fff;
+  }
+}

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import App from './views/App'
 import stores from './stores'
 import './styles/iconfont.css'
-import './styles/main.css'
+import './styles/reset.css'
 
 const initState = window.__INITIAL_STATE__ || {} // eslint-disable-line
 const store = stores(initState)

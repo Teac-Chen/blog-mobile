@@ -1,97 +1,8 @@
-$MainBgColor: #20232a;
-$SecondaryBgColor: #282c34;
-$TypeColor: #61dafb;
-
-@mixin flexCenter {
-  display: flex;
-  align-items: center;
-}
-
-@mixin containerLayout {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-@mixin primaryBlock {
-  padding: 15px 25px;
-  background-color: $TypeColor;
-  font-size: 20px;
-  color: black;
-  transition: background-color .3s;
-
-  &:hover {
-    background-color: #fff;
-  }
-}
-
-#root {
-  position: relative;
-  min-height: 100vh;
-}
-
-.header {
-  background-color: $MainBgColor;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-}
+@import "main";
 
 .main {
   padding-top: 60px;
   padding-bottom: 60px;
-}
-
-.footer {
-  background-color: $MainBgColor;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.headerContainer {
-  @include containerLayout;
-  display: flex;
-  justify-content: space-between;
-  font-size: 18px;
-
-  .logo {
-    @include flexCenter;
-    color: $TypeColor;
-    font-weight: bold;
-
-    &:focus {
-      color: white;
-    }
-  }
-
-  .nav {
-    flex: 1;
-    padding: 0 40px;
-    display: flex;
-    height: 60px;
-  }
-
-  .navItem {
-    @include flexCenter;
-    color: #fff;
-    padding: 0 20px;
-  }
-
-  .share {
-    @include flexCenter;
-    color: #fff;
-  }
-}
-
-.footerContainer {
-  @include containerLayout;
-  @include flexCenter;
-  color: white;
-  height: 60px;
 }
 
 .banner {
@@ -122,6 +33,7 @@ $TypeColor: #61dafb;
     text-align: center;
     font-size: 60px;
     margin: 0;
+    position: relative;
   }
 
   .summary {
@@ -130,18 +42,17 @@ $TypeColor: #61dafb;
     color: white;
     text-align: center;
     padding-top: 20px;
+    position: relative;
   }
 
   .linkBox {
     padding-top: 65px;
     text-align: center;
+    position: relative;
     .link {
       @include primaryBlock;
     }
   }
-}
-
-.content {
 }
 
 .contentContainer {

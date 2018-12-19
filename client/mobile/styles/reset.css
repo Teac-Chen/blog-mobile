@@ -348,3 +348,8 @@ template {
 [hidden] {
   display: none;
 }
+
+#root {
+  position: relative;
+  min-height: 100vh;
+}
