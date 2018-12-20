@@ -6,21 +6,33 @@ import {
 } from 'react-router-dom'
 
 import contantRouterMap from '@m/routers'
+import Layout from './Layout'
 
-export default () => (
-  <Switch>
-    {contantRouterMap.map(route => (route.redirect
-      ? <Redirect key={route.from} from={route.from} to={route.to} />
-      : (
-        <Route
-          key={route.path}
-          exact={route.exact}
-          path={route.path}
-          component={route.component}
-        />
-      )
-    ))}
+const App = () => (
+  <Layout>
+    <Switch>
+      {contantRouterMap.map(route => (route.redirect
+        ? (
+          <Redirect
+            key={route.path}
+            exact={route.exact}
+            from={route.path}
+            to={route.to}
+          />
+        )
+        : (
+          <Route
+            key={route.path}
+            exact={route.exact}
+            path={route.path}
+            component={route.component}
+          />
+        )
+      ))}
 
-    <Redirect to="/404" />
-  </Switch>
+      <Redirect to="/404" />
+    </Switch>
+  </Layout>
 )
+
+export default App

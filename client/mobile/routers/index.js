@@ -5,7 +5,12 @@ import Error404 from '@m/views/ErrorPages/Error404'
 import Error401 from '@m/views/ErrorPages/Error401'
 
 export default [
-  { path: '/', exact: true, component: Home },
+  {
+    path: '/',
+    exact: true,
+    to: '/topic',
+    redirect: true,
+  },
   { path: '/topic', component: Home },
   { path: '/todo', component: Todo },
   { path: '/login', component: Login },
