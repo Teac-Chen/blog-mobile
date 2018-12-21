@@ -3,6 +3,7 @@ import { Link, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { getArticle } from './action'
 import './index.scss'
 
 import Topics from './Topics'
@@ -18,49 +19,19 @@ class Home extends React.Component {
       summary: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
     }).isRequired).isRequired,
+    match: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+    }).isRequired,
     dispatch: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
     const { dispatch } = this.props
-    setTimeout(() => {
-      dispatch({
-        type: 'INIT_ARTICLE',
-        list: [{
-          id: '1',
-          title: '测试的标题',
-          summary: '测试的简介',
-          image: 'https://img4.mukewang.com/szimg/59b8a486000107fb05400300.jpg',
-          read: 5000,
-          date: '2018-12-14 18:36:26',
-        }, {
-          id: '2',
-          title: '测试的标题',
-          summary: '测试的简介',
-          image: 'https://img4.mukewang.com/szimg/59b8a486000107fb05400300.jpg',
-          read: 2000,
-          date: '2018-12-14 18:36:26',
-        }, {
-          id: '3',
-          title: '测试的标题',
-          summary: '测试的简介',
-          image: 'https://img4.mukewang.com/szimg/59b8a486000107fb05400300.jpg',
-          read: 2000,
-          date: '2018-12-14 18:36:26',
-        }, {
-          id: '4',
-          title: '测试的标题',
-          summary: '测试的简介',
-          image: 'https://img4.mukewang.com/szimg/59b8a486000107fb05400300.jpg',
-          read: 2000,
-          date: '2018-12-14 18:36:26',
-        }],
-      })
-    }, 3000)
+    getArticle(dispatch)
   }
 
   render() {
-    const { article } = this.props
+    const { article, match: { path } } = this.props
     return (
       <React.Fragment>
         <div className="banner">
@@ -81,7 +52,7 @@ class Home extends React.Component {
             }
           </div>
         </div>
-        <Route path="/topic/:id" render={({ match: { params: { id } } }) => <TopicDetail id={id} />} />
+        <Route path={`${path}/:id`} render={({ match: { params: { id } } }) => <TopicDetail id={id} />} />
       </React.Fragment>
     )
   }
