@@ -11,15 +11,31 @@ import './styles/reset.css'
 const initState = window.__INITIAL_STATE__ || {} // eslint-disable-line
 const store = stores(initState)
 
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root'),
-)
+const render = (curStore) => {
+  ReactDOM.render(
+    <Provider store={curStore}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>,
+    document.getElementById('root'),
+  )
+}
+
+render(store)
 
 if (module.hot) {
-  module.hot.accept()
+  module.hot.accept('./stores/index.js', () => {
+    const newReducer = require('./stores/index.js').combineReducer
+
+    store.replaceReducer(newReducer)
+  })
+
+  module.hot.accept('./views/App.jsx', () => {
+    const newReducer = require('./stores/index.js').combineReducer
+
+    store.replaceReducer(newReducer)
+
+    render(store)
+  })
 }

@@ -9,4 +9,6 @@ const combineReducer = combineReducers({
   article,
 })
 
+export { combineReducer }
+
 export default initState => createStore(combineReducer, initState)
