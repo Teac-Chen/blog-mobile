@@ -3,6 +3,7 @@ const path = require('path')
 const merge = require('webpack-merge')
 const HtmlPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const { devConfig, baseConfig } = require('../config')
 const base = require('./webpack-config-base')
@@ -52,6 +53,12 @@ if (isDev) {
   ])
 } else {
   config.mode = 'production'
+  config.plugins = config.plugins.concat([
+    new MiniCssExtractPlugin({
+      filename: isDev ? "css/[name].css" : "css/[name]-[hash:7].css",
+      chunkFilename: isDev ? "css/[id].css" : "css/[id]-[hash:7].css"
+    })
+  ])
 }
 
 module.exports = merge(base, config)

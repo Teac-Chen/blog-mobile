@@ -1,4 +1,5 @@
 const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -25,7 +26,7 @@ module.exports = {
       }, {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -53,8 +54,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            name: isDev ? '[name].[ext]' : '[name]-[hash:7].[ext]',
-            outputPath: '/fonts/'
+            name: isDev ? 'fonts/[name].[ext]' : 'fonts/[name]-[hash:7].[ext]'
           }
         }]
       }, {
@@ -63,8 +63,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            name: isDev ? '[name].[ext]' : '[name]-[hash:7].[ext]',
-            outputPath: '/images/'
+            name: isDev ? 'images/[name].[ext]' : 'images/[name]-[hash:7].[ext]'
           }
         }]
       }

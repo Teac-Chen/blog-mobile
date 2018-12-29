@@ -1,14 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+// import MarkDown from 'react-markdown'
+import HtmlToReact from 'html-to-react/lib/parser'
 
 import Icon from '@m/components/Icon'
+// import CodeBlock from './components/CodeBlock'
+// import Image from './components/Image'
+
+import { getArticle } from './action'
 
 import './TopicDetail.scss'
 
 class TopicDetail extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    cur: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -18,6 +27,10 @@ class TopicDetail extends React.Component {
   }
 
   componentDidMount() {
+    const { id, dispatch } = this.props
+
+    getArticle(dispatch, id)
+
     window.document.body.style.overflow = 'hidden'
   }
 
@@ -30,8 +43,9 @@ class TopicDetail extends React.Component {
   }
 
   render() {
-    const { id } = this.props
+    const { id, cur } = this.props
     const { showCatelog } = this.state
+    const htmlToReact = new HtmlToReact()
     return (
       <div className="topicDetail_wrapper">
         <aside className={`topicDetail_catelog ${showCatelog ? 'active' : ''}`}>目录</aside>
@@ -46,202 +60,9 @@ class TopicDetail extends React.Component {
             </Link>
           </header>
           <article className="topicDetail_article">
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
-            这里是内容
-            <br />
+            <div>
+              {htmlToReact.parse(cur)}
+            </div>
           </article>
         </section>
       </div>
@@ -249,4 +70,6 @@ class TopicDetail extends React.Component {
   }
 }
 
-export default TopicDetail
+export default connect(state => ({
+  cur: state.article.cur,
+}))(TopicDetail)

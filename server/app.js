@@ -4,7 +4,7 @@ const favicon = require('koa-favicon')
 
 const logTime = require('./middlewares/log-time')
 // const koaStaticPath = require('./middlewares/koa-static-path')
-const routers = require('./routers')
+const router = require('./routers')
 
 const config = require('../config').baseConfig.node
 // const isDev = process.env.NODE_ENV === 'development'
@@ -19,10 +19,10 @@ app.on('error', err => {
   console.log('server error', err)
 })
 
-app.use(routers.middleware())
-
 app
   .use(logTime)
+  .use(router.routes())
+  .use(router.allowedMethods())
   .use(favicon(path.resolve(__dirname, '../favicon.ico')))
 
 // if (isDev) {

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export function getArticle(dispatch) {
-  axios('/api/article/list')
+export function getArticleList(dispatch) {
+  axios.get('/api/article/list')
     .then((result) => {
       dispatch({
         type: 'INIT_ARTICLE',
@@ -13,4 +13,15 @@ export function getArticle(dispatch) {
     })
 }
 
-export function getTitle() {}
+export function getArticle(dispatch, id) {
+  axios.get(`/api/article/get/${id}`)
+    .then((result) => {
+      dispatch({
+        type: 'CUR_ARTICLE',
+        article: result.data.data.data.content,
+      })
+    })
+    .catch((err) => {
+      alert(err.message) // eslint-disable-line
+    })
+}

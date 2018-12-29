@@ -3,7 +3,7 @@ import { Link, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { getArticle } from './action'
+import { getArticleList } from './action'
 import './index.scss'
 
 import Topics from './Topics'
@@ -27,7 +27,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props
-    getArticle(dispatch)
+    getArticleList(dispatch)
   }
 
   render() {
@@ -59,7 +59,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  article: state.article,
+  article: state.article.list,
 })
 
 
