@@ -1,0 +1,14 @@
+.topicItem {
+  flex: 0 1 30%;
+  margin-bottom: 20px;
+  transition: box-shadow .3s;
+  padding: 4px;
+
+  &:hover {
+    box-shadow: 0 0 10px #000;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}

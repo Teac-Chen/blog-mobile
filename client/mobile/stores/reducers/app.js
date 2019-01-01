@@ -1,7 +1,13 @@
-export default (state = false, action) => {
+export default (state = {
+  isLogin: false,
+  token: '',
+}, action) => {
   switch (action.type) {
-    case 'TOGGLE_SCROLL': {
-      return action.state
+    case 'LOGIN': {
+      return {
+        isLogin: true,
+        token: action.token,
+      }
     }
     default: {
       return state

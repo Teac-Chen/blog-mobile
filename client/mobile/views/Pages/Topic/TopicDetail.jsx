@@ -18,6 +18,7 @@ class TopicDetail extends React.Component {
     id: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
     cur: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -68,7 +69,7 @@ class TopicDetail extends React.Component {
   }
 
   render() {
-    const { id, cur } = this.props
+    const { id, cur, path } = this.props
     const { showCatelog } = this.state
     const htmlToReact = new HtmlToReact()
     return (
@@ -88,7 +89,7 @@ class TopicDetail extends React.Component {
               {this.renderCatelogIcon()}
             </button>
             <h1 className="topicDetail_title">{id}</h1>
-            <Link to="/topic" className="back">
+            <Link to={path} className="back">
               <Icon type="close" size="lg" />
             </Link>
           </header>

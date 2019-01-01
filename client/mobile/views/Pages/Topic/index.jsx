@@ -36,7 +36,7 @@ class Home extends React.Component {
       <React.Fragment>
         <div className="banner">
           <div className="bannerContainer">
-            <h1 className="title">Teac小站</h1>
+            <h1 className="title">Teac</h1>
             <p className="summary">分享技术&nbsp;&nbsp;记录成长</p>
             <div className="linkBox">
               <Link to="/todo" className="link">关于我 &gt;</Link>
@@ -47,12 +47,12 @@ class Home extends React.Component {
           <div className="contentContainer">
             {
               article.length > 0
-                ? <Topics topics={article} />
+                ? <Topics topics={article} path={path} />
                 : <span>加载中···</span>
             }
           </div>
         </div>
-        <Route path={`${path}/:id`} render={({ match: { params: { id } } }) => <TopicDetail id={id} />} />
+        <Route path={`${path}/:id`} render={({ match: { params: { id } } }) => <TopicDetail path={path} id={id} />} />
       </React.Fragment>
     )
   }

@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Icon = ({ type }) => <i className={`iconfont icon-${type}`} />
+const Icon = ({ type, size }) => <i className={`iconfont icon-${type} icon-${size}`} />
 
 Icon.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(['xs', 'md', 'lg']),
 }
 
 Icon.defaultProps = {
-  type: '',
+  size: 'md',
 }
 
 export default Icon

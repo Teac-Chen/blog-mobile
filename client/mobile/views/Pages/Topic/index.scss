@@ -1,0 +1,56 @@
+@import "mixins";
+
+.banner {
+  background-color: $SecondaryBgColor;
+}
+
+.bannerContainer {
+  @include containerLayout;
+  padding-top: 95px;
+  padding-bottom: 85px;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.05;
+    background-image: url('../../../assest/images/bg.svg');
+    background-repeat: no-repeat;
+    background-position: 100% 100px;
+    background-size: 50% auto;
+  }
+
+  .title {
+    color: $TypeColor;
+    text-align: center;
+    font-size: 60px;
+    margin: 0;
+    position: relative;
+  }
+
+  .summary {
+    margin: 0;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+    position: relative;
+  }
+
+  .linkBox {
+    padding-top: 65px;
+    text-align: center;
+    position: relative;
+    .link {
+      @include primaryBlock;
+    }
+  }
+}
+
+.contentContainer {
+  @include containerLayout;
+  padding: 20px 0;
+}
